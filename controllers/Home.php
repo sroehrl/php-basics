@@ -20,7 +20,6 @@ class Home
 
     function getPosts()
     {
-        $posts = new Posts();
-        return $posts->getAll();
+        return Posts::find();
     }
 }
