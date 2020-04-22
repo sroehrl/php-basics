@@ -4,19 +4,20 @@
 namespace Models;
 
 
+use Neoan3\Apps\Db;
+
 class Posts
 {
-    function getAll()
+    public $postId;
+    function __construct($keyValues)
     {
-        return [
-          ['title' => 'Post 1', 'content' => 'This is content 1'],
-          ['title' => 'Post 2', 'content' => 'This is content 2'],
-          ['title' => 'Post 3', 'content' => 'This is content 3'],
-        ];
+        $this->postId = Db::ask('post',$keyValues);
     }
-    function get($id)
-    {
 
+    static function find($condition=[])
+    {
+        return Db::easy('post.*', $condition);
     }
+
 
 }
