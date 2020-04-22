@@ -1,0 +1,15 @@
+<section>
+    <h1>This is my homepage</h1>
+    <h2>Newest posts</h2>
+    <div class="card" n-for="posts as post">
+        <div class="card-header">
+            <div class="card-title h5">{{post.title}}</div>
+        </div>
+        <div class="card-body">
+            {{post.content}}
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary">click me</button>
+        </div>
+    </div>
+</section>
