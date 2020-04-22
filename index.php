@@ -37,13 +37,11 @@ if(isset($_GET['route'])){
 }
 
 // which controller?
-$base = 'http://localhost/php-basics/';
 $substitutions = [
     'title' => $title,
-    'base' => $base,
     'navs' => [
         [
-            'href' => $base .'index.php?route=about',
+            'href' => 'index.php?route=about',
             'title' => 'About'
         ]
     ],
