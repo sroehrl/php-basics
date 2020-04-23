@@ -7,19 +7,13 @@ namespace Controller;
 use Models\Posts;
 use Neoan3\Apps\Template;
 
-class Home
+class Home extends Controller
 {
-    public $view = '';
-
     function __construct()
     {
         $this->view = Template::embraceFromFile('/views/home.html', [
-            'posts' => $this->getPosts()
+            'posts' => Posts::find()
         ]);
     }
 
-    function getPosts()
-    {
-        return Posts::find();
-    }
 }
