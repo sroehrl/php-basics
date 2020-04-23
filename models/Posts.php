@@ -6,7 +6,7 @@ namespace Models;
 
 use Neoan3\Apps\Db;
 
-class Posts
+class Posts implements Model
 {
     public $postId;
     function __construct($keyValues)
