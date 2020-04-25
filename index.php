@@ -7,48 +7,30 @@ require_once 'vendor/autoload.php';
 
 use Neoan3\Apps\Template;
 
-define('path',__DIR__);
+// setup
+include 'startup.php';
 
-/*
-*   SETUP
- * */
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-try{
-    \Neoan3\Apps\Db::setEnvironment([
-        'host' => getenv('DB_HOST'),
-        'name' => getenv('DB_NAME'),
-        'user' => getenv('DB_USER'),
-        'password' => getenv('DB_PASSWORD')
-    ]);
-} catch (\Neoan3\Apps\DbException $e){
-    die('Database issue');
+
+function generateRoute($path = '')
+{
+    return getenv('APP_WEB_ROOT') . '/' . ($path !== '' ? $path . '/' : '') ;
 }
 
+$app = new \Base\Router('/views/main.html');
 
-$title = 'Homepage';
-
-if(isset($_GET['route'])){
-    $class = '\\Controller\\'.ucfirst($_GET['route']);
-    $currentRoute = new $class();
-    $title = 'My project - ' . ucfirst($_GET['route']);
-} else {
-    $currentRoute = new \Controller\Home();
-}
-
-// which controller?
 $substitutions = [
-    'title' => $title,
+    'title' => $app->title,
+    'home' => generateRoute(),
     'navs' => [
         [
-            'href' => 'index.php?route=about',
+            'href' => generateRoute('about'),
             'title' => 'About'
         ]
     ],
-    'content' => $currentRoute->view
+    'content' => $app->currentRoute->view
 ];
 
 
-echo Template::embraceFromFile('/views/main.html',$substitutions);
+echo $app->output($substitutions);
 
 

@@ -1,13 +1,15 @@
 {
-    "require": {
-        "neoan3-apps/template": "^1.0",
-        "neoan3-apps/db": "^0.2.1",
-        "vlucas/phpdotenv": "^4.1"
-    },
-    "autoload": {
-        "psr-4": {
-            "Controller\\": "controllers",
-            "Models\\": "models"
-        }
+  "require": {
+    "neoan3-apps/template": "^1.0",
+    "neoan3-apps/db": "^0.2.1",
+    "vlucas/phpdotenv": "^4.1",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Controllers\\": "controllers",
+      "Models\\": "models",
+      "Base\\": "base"
     }
+  }
 }
