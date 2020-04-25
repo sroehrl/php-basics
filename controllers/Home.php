@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Controller;
+namespace Controllers;
 
 
 use Models\Posts;
@@ -14,6 +14,10 @@ class Home extends Controller
         $this->view = Template::embraceFromFile('/views/home.html', [
             'posts' => Posts::find()
         ]);
+    }
+    function getPosts()
+    {
+        return json_encode(Posts::find());
     }
 
 }
