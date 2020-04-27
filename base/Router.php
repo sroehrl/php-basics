@@ -10,10 +10,10 @@ class Router
     public $currentRoute;
     private $skeleton;
 
-    function __construct($htmlSkeleton)
+    function __construct($htmlSkeleton, $defaultRoute)
     {
         $this->skeleton = $htmlSkeleton;
-        $parts = explode('/', $_GET['route']);
+        $parts = isset($_GET['route']) ? explode('/', $_GET['route']) : [$defaultRoute];
         if ($parts[0] === 'api') {
             $this->apiRoute(ucfirst($parts[1]));
         } else {
@@ -29,13 +29,18 @@ class Router
         $method = strtolower($_SERVER['REQUEST_METHOD']) . $controller;
         // retrieve payload
         $payload = [];
-        foreach ($_REQUEST as $key => $value) {
+
+        $request =array_merge($_REQUEST, json_decode(file_get_contents('php://input'),true));
+
+        foreach ($request as $key => $value) {
             if ($key !== 'route') {
                 $payload[$key] = $value;
             }
         }
         header('Content-Type: application/json');
-        echo json_encode($this->currentRoute->$method($payload));
+
+        $call = $this->currentRoute->$method($payload);
+        echo json_encode($call);
         exit();
     }
 
@@ -45,7 +50,7 @@ class Router
         $this->currentRoute = new $class();
     }
 
-    function pageRoute($controller = 'Home')
+    function pageRoute($controller)
     {
         $this->constructController($controller);
         $this->title = 'My project - ' . $controller;

@@ -12,7 +12,8 @@ class Home extends Controller
     function __construct()
     {
         $this->view = Template::embraceFromFile('/views/home.html', [
-            'posts' => Posts::find()
+            'posts' => array_reverse(Posts::find()),
+            'base' => getenv('APP_WEB_ROOT')
         ]);
     }
     function getPosts()
