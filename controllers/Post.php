@@ -5,13 +5,20 @@ namespace Controllers;
 
 
 use Models\Posts;
+use Neoan3\Apps\DbException;
 
-class Post
+class Post extends Controller
 {
-    public $view = '';
-    public function __construct()
-    {
-//        new Posts(['title' => 'TEst post', 'content' => 'some text']);
-    }
+   function postPost($payload)
+   {
+       try{
+           $id = Posts::create($payload);
+       } catch (DbException $e){
+           return ['success'=> false];
+       }
+       $payload['id'] = $id;
+       return ['success' => true, 'post' => $payload];
+
+   }
 
 }

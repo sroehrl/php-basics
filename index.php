@@ -16,9 +16,10 @@ function generateRoute($path = '')
     return getenv('APP_WEB_ROOT') . '/' . ($path !== '' ? $path . '/' : '') ;
 }
 
-$app = new \Base\Router('/views/main.html');
+$app = new \Base\Router('/views/main.html', 'Home');
 
 $substitutions = [
+    'base' => getenv('APP_WEB_ROOT'),
     'title' => $app->title,
     'home' => generateRoute(),
     'navs' => [

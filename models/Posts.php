@@ -18,6 +18,10 @@ class Posts implements Model
     {
         return Db::easy('post.*', $condition);
     }
+    static function create($post)
+    {
+        return Db::ask('post',$post);
+    }
 
 
 }

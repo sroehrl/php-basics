@@ -1,15 +1,41 @@
 <section>
     <h1>This is my homepage</h1>
-    <h2>Newest posts</h2>
-    <div class="card" n-for="posts as post">
-        <div class="card-header">
-            <div class="card-title h5">{{post.title}}</div>
+    <div class="columns">
+        <div class="column">
+            <h2>Newest posts</h2>
+            <div id="post-container">
+                <div class="card" n-for="posts as post">
+                    <div class="card-header">
+                        <div class="card-title h5">{{post.title}}</div>
+                    </div>
+                    <div class="card-body">
+                        {{post.content}}
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">click me</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            {{post.content}}
-        </div>
-        <div class="card-footer">
-            <button class="btn btn-primary">click me</button>
+        <div class="column col-4">
+            <h2>Create new post</h2>
+            <form id="postForm">
+                <div class="form-group">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-input" type="text" name="title" id="title" placeholder="post tile">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="content">Content</label>
+                    <textarea class="form-input" type="text" name="content" id="content"></textarea>
+                </div>
+                <div>
+                    <button class="btn btn-secondary" type="submit">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
+
+
+
 </section>
+<script src="{{base}}/assets/js/newPost.js"></script>
