@@ -15,6 +15,10 @@ function generateRoute($path = '')
 {
     return getenv('APP_WEB_ROOT') . '/' . ($path !== '' ? $path . '/' : '') ;
 }
+function retrieveSession($key)
+{
+    return isset($_SESSION[$key]) ? $_SESSION[$key] : false;
+}
 
 $app = new \Base\Router('/views/main.html', 'Home');
 
@@ -25,17 +29,26 @@ $substitutions = [
     'navs' => [
         [
             'href' => generateRoute('about'),
-            'title' => 'About'
+            'title' => 'About',
+            'show' => true
         ],
         [
             'href' => generateRoute('signup'),
-            'title' => 'Signup'
+            'title' => 'Signup',
+            'show' => !isset($_SESSION['user'])
         ],
         [
             'href' => generateRoute('login'),
-            'title' => 'Login'
+            'title' => 'Login',
+            'show' => !isset($_SESSION['user'])
+        ],
+        [
+            'href' => generateRoute('login') . '?logout=true',
+            'title' => 'Logout',
+            'show' => isset($_SESSION['user'])
         ]
     ],
+    'user' => retrieveSession('user'),
     'content' => $app->currentRoute->view
 ];
 

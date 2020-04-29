@@ -34,5 +34,9 @@ class Users implements Model
     {
         return Db::easy('user.*',$condition);
     }
+    static function byId($id)
+    {
+        return Db::easy('user.*',['id' => $id])[0];
+    }
 
 }
