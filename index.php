@@ -26,6 +26,14 @@ $substitutions = [
         [
             'href' => generateRoute('about'),
             'title' => 'About'
+        ],
+        [
+            'href' => generateRoute('signup'),
+            'title' => 'Signup'
+        ],
+        [
+            'href' => generateRoute('login'),
+            'title' => 'Login'
         ]
     ],
     'content' => $app->currentRoute->view
