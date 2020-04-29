@@ -16,11 +16,22 @@ class Posts implements Model
 
     static function find($condition=[])
     {
-        return Db::easy('post.*', $condition);
+        $users = [];
+        $ids =  Db::easy('post.id', $condition);
+        foreach ($ids as $id){
+            $users[] = self::byId($id['id']);
+        }
+        return $users;
     }
     static function create($post)
     {
         return Db::ask('post',$post);
+    }
+    static function byId($id)
+    {
+        $post = Db::easy('post.*', ['id'=>$id])[0];
+        $post['user'] = Users::byId($post['user_id']);
+        return $post;
     }
 
 

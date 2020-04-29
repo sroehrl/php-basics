@@ -13,7 +13,9 @@ class Home extends Controller
     {
         $this->view = Template::embraceFromFile('/views/home.html', [
             'posts' => array_reverse(Posts::find()),
-            'base' => getenv('APP_WEB_ROOT')
+            'base' => getenv('APP_WEB_ROOT'),
+            'loggedIn' => isset($_SESSION['user']),
+            'user' => retrieveSession('user')
         ]);
     }
     function getPosts()

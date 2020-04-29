@@ -13,7 +13,7 @@
 <header class="navbar">
     <section class="navbar-section">
         <a href="{{home}}" class="navbar-brand mr-2">MY Project</a>
-        <a n-for="navs as nav" href="{{nav.href}}" class="btn btn-link">{{nav.title}}</a>
+        <a n-for="navs as nav" n-if="nav.show" href="{{nav.href}}" class="btn btn-link">{{nav.title}}</a>
     </section>
 
 </header>
