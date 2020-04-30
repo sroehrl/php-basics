@@ -1,5 +1,26 @@
 <section>
-    <p>
-        This is everything you need to know about me!
-    </p>
+
+    <div class="panel">
+        <div class="panel-header">
+            <div class="panel-title">About me</div>
+        </div>
+        <div class="panel-nav">
+            <ul class="tab tab-block">
+                <li class="tab-item {{tabNavigationLink.class}}" n-for="tabNavigationLinks as tabNavigationLink">
+                    <a href="?tab={{tabNavigationLink.link}}">{{tabNavigationLink.name}}</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div id="about" n-if="tab == 'about'">
+                <p class="m-2">I am dev making my way through a cruel world...</p>
+            </div>
+            <div id="accounts"  n-if="tab == 'accounts'">
+                <a href="https://github.com/sroehrl" class="btn mr-2">GitHub</a>
+                <a href="https://twitch.tv/neoan3" class="btn">twitch</a>
+            </div>
+        </div>
+
+    </div>
 </section>
