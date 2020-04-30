@@ -12,9 +12,30 @@ class About extends Controller
 
     function __construct()
     {
-        $this->view = Template::embraceFromFile('views/about.html',[]);
+        $activeTab = isset($_GET['tab']) ? $_GET['tab'] : 'about';
+        $tabNavigationLinks = [
+            [
+                'name' => 'About me',
+                'link' => 'about',
+            ],
+            [
+                'name' => 'My accounts',
+                'link' => 'accounts',
+            ],
+
+        ];
+        foreach ($tabNavigationLinks as $i => $navigationLink){
+            $tabNavigationLinks[$i]['class'] = $activeTab == $navigationLink['link'] ? 'active' : '';
+        }
+
+        $this->view = Template::embraceFromFile('views/about.html', [
+            'tab' => $activeTab,
+            'tabNavigationLinks' => $tabNavigationLinks
+        ]);
     }
-    function getAbout($body){
+
+    function getAbout($body)
+    {
         return $body;
     }
 

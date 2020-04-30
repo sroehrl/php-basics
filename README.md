@@ -2,6 +2,11 @@
 
 Basic structure for clean projects
 
+## Installation
+
+1. create a `.env` file based on `example.env`
+2. setup your database credentials in `startup.php`
+3. run or visit `install.php`
 
 ## As seen on Twitch
 
