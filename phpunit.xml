@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stderr="true"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="end-to-end">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./</directory>
+            <exclude>
+                <directory>./tests</directory>
+                <directory>./vendor</directory>
+                <file>info.php</file>
+                <file>install.php</file>
+                <file>index.php</file>
+                <file>not-like-this.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-clover" target="tests/clover.xml"/>
+    </logging>
+</phpunit>
