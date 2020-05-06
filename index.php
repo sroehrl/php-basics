@@ -33,6 +33,11 @@ $substitutions = [
             'show' => true
         ],
         [
+            'href' => generateRoute('advanced'),
+            'title' => 'Advanced',
+            'show' => true
+        ],
+        [
             'href' => generateRoute('signup'),
             'title' => 'Signup',
             'show' => !isset($_SESSION['user'])
